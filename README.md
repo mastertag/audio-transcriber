@@ -2,6 +2,36 @@
 
 A Claude Code skill that transcribes meeting videos and audios to professional Markdown with speaker identification and visual context.
 
+## Installation
+
+### Option 1: Clone directly (recommended)
+
+```bash
+git clone https://github.com/mastertag/audio-transcriber.git ~/.claude/skills/audio-transcriber
+```
+
+### Option 2: Symlink (if you keep skills in a separate folder)
+
+```bash
+git clone https://github.com/mastertag/audio-transcriber.git ~/my-skills/audio-transcriber
+ln -s ~/my-skills/audio-transcriber ~/.claude/skills/audio-transcriber
+```
+
+### Option 3: Project-specific (only for one project)
+
+```bash
+cd /path/to/your/project
+git clone https://github.com/mastertag/audio-transcriber.git .claude/skills/audio-transcriber
+```
+
+After installing, verify it appears in Claude Code by typing `/` and looking for `audio-transcriber`.
+
+Python dependencies (mlx-whisper, speechbrain, ffmpeg, etc.) are **installed automatically** on first run. If you prefer to install them upfront:
+
+```bash
+bash ~/.claude/skills/audio-transcriber/scripts/install-requirements.sh
+```
+
 ## Why does this project exist?
 
 We often receive meeting recordings from other people — a video file from Google Meet, Zoom, Teams, or even a phone recording. Without having attended the call or used real-time transcription plugins, we're left without tools to extract the meeting content in a useful way for task development or documentation.
@@ -153,6 +183,36 @@ MIT
 # Audio Transcriber v2.0.0 — Português
 
 Skill para Claude Code que transcreve vídeos e áudios de reuniões para Markdown profissional com identificação de locutores e contexto visual.
+
+## Instalação
+
+### Opção 1: Clone direto (recomendado)
+
+```bash
+git clone https://github.com/mastertag/audio-transcriber.git ~/.claude/skills/audio-transcriber
+```
+
+### Opção 2: Symlink (se você mantém skills em pasta separada)
+
+```bash
+git clone https://github.com/mastertag/audio-transcriber.git ~/my-skills/audio-transcriber
+ln -s ~/my-skills/audio-transcriber ~/.claude/skills/audio-transcriber
+```
+
+### Opção 3: Específico de um projeto
+
+```bash
+cd /caminho/do/seu/projeto
+git clone https://github.com/mastertag/audio-transcriber.git .claude/skills/audio-transcriber
+```
+
+Após instalar, verifique que aparece no Claude Code digitando `/` e procurando por `audio-transcriber`.
+
+As dependências Python (mlx-whisper, speechbrain, ffmpeg, etc.) são **instaladas automaticamente** na primeira execução. Se preferir instalar antes:
+
+```bash
+bash ~/.claude/skills/audio-transcriber/scripts/install-requirements.sh
+```
 
 ## Por que esse projeto existe?
 
