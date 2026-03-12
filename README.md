@@ -96,21 +96,17 @@ In VS Code:
 
 ## Requirements
 
+All dependencies are **installed automatically** on first run. You don't need to install anything manually — the skill detects what's missing and installs it.
+
+Under the hood, it uses:
+- `mlx-whisper` — transcription engine (Apple Silicon GPU)
+- `speechbrain`, `scikit-learn`, `soundfile` — speaker diarization
+- `ffmpeg` — format conversion + frame extraction
+- `yt-dlp` — YouTube audio download (fallback when no captions)
+
+Optional (for instant YouTube transcription via captions):
 ```bash
-# Transcription engine (Apple Silicon)
-pip install mlx-whisper
-
-# Diarization
-pip install speechbrain scikit-learn soundfile
-
-# Format conversion + frame extraction
-brew install ffmpeg
-
-# YouTube (optional — transcription via captions)
 claude mcp add youtube-transcript -- npx -y @sinco-lab/mcp-youtube-transcript
-
-# YouTube fallback (optional — when no captions available)
-pip install yt-dlp
 ```
 
 ## Benchmarks (Apple M2, 8GB RAM)
@@ -252,21 +248,17 @@ No VS Code:
 
 ## Requisitos
 
+Todas as dependências são **instaladas automaticamente** na primeira execução. Você não precisa instalar nada manualmente — o skill detecta o que está faltando e instala.
+
+Por baixo dos panos, usa:
+- `mlx-whisper` — engine de transcrição (Apple Silicon GPU)
+- `speechbrain`, `scikit-learn`, `soundfile` — diarização de locutores
+- `ffmpeg` — conversão de formatos + extração de frames
+- `yt-dlp` — download de áudio do YouTube (fallback quando não houver legendas)
+
+Opcional (para transcrição instantânea do YouTube via legendas):
 ```bash
-# Engine de transcrição (Apple Silicon)
-pip install mlx-whisper
-
-# Diarização
-pip install speechbrain scikit-learn soundfile
-
-# Conversão de formatos + extração de frames
-brew install ffmpeg
-
-# YouTube (opcional — transcrição via legendas)
 claude mcp add youtube-transcript -- npx -y @sinco-lab/mcp-youtube-transcript
-
-# YouTube fallback (opcional — quando não houver legendas)
-pip install yt-dlp
 ```
 
 ## Benchmarks (Apple M2, 8GB RAM)

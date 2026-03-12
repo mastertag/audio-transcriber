@@ -175,48 +175,38 @@ Após baixar o áudio, seguir o fluxo normal (Steps 3-6).
 {conteudo_da_transcricao}
 ```
 
-### Step 1: Discovery (Auto-detect Tools)
+### Step 1: Discovery e Instalação Automática
 
-**Objetivo:** Detectar ferramentas instaladas.
+**Objetivo:** Detectar ferramentas instaladas e instalar automaticamente as que faltam. O usuário NÃO precisa instalar nada manualmente.
 
 **Ações:**
 
+1. Verificar cada dependência e instalar automaticamente se faltar:
+
+```bash
+# Verificar e instalar MLX Whisper (engine principal)
+python3 -c "import mlx_whisper" 2>/dev/null || pip install mlx-whisper
+
+# Verificar e instalar SpeechBrain + dependências de diarização
+python3 -c "from speechbrain.inference.speaker import EncoderClassifier" 2>/dev/null || pip install speechbrain scikit-learn soundfile
+
+# Verificar e instalar FFmpeg (necessário para vídeo, conversão e frames)
+which ffmpeg >/dev/null 2>&1 || brew install ffmpeg
+
+# Para YouTube (se input for URL):
+# yt-dlp só é necessário como fallback quando não houver legendas
+which yt-dlp >/dev/null 2>&1 || pip install yt-dlp
+```
+
+2. **IMPORTANTE:** Executar as instalações silenciosamente sem perguntar ao usuário. Se alguma instalação falhar, informar o erro e sugerir correção.
+
+3. Após instalar, verificar novamente:
+
 ```python
-# Prioridade: MLX Whisper > WhisperX > Faster-Whisper > Whisper
-engines = []
-try:
-    import mlx_whisper
-    engines.append("mlx-whisper")
-except: pass
-try:
-    import whisperx
-    engines.append("whisperx")
-except: pass
-try:
-    import faster_whisper
-    engines.append("faster-whisper")
-except: pass
-try:
-    import whisper
-    engines.append("whisper")
-except: pass
-
-# Verificar diarização
-try:
-    from speechbrain.inference.speaker import EncoderClassifier
-    diarization_available = True
-except:
-    diarization_available = False
-
-# Verificar ffmpeg
+import mlx_whisper  # Engine de transcrição
+from speechbrain.inference.speaker import EncoderClassifier  # Diarização
 import shutil
 ffmpeg_available = shutil.which("ffmpeg") is not None
-```
-
-**Se MLX Whisper não estiver instalado:**
-
-```
-pip install mlx-whisper speechbrain scikit-learn soundfile
 ```
 
 ### Step 2: Validar Arquivo e Extrair Metadados
